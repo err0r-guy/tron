@@ -1,0 +1,78 @@
+<script type="text/javascript">
+  $(document).ready(function () {
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function () {
+      OneSignal.init({
+        appId: "e6bc45a9-54c4-4904-a05d-2fd704fb0ca3",
+      });
+    });
+    $(".send").click(function () {
+      $('.contact').submit();
+    });
+    $("#id-button-withdraw").click(function () {
+      $("#header-balance").animate({
+        height: "250px"
+      }, 300);
+    });
+    $("#rememberEmail-btn").click(function () {
+      $("#InPainelEmail").animate({
+        height: "180px"
+      }, 300);
+      registerEmail();
+    });
+    $(".set-account").click(function () {
+      window.location = '/account?f=1';
+    });
+    $(".set-logout").click(function () {
+      window.location = '/logout';
+    });
+    $(".alert-networks-a").click(function () {
+      $.post('/', {
+        "task": "whatsapp-networks",
+        "source": $(this).data("type")
+      });
+    });
+
+    function getBalace2(v) {
+      var un = Math.round(Math.random() * 10000);
+      var date = new Date();
+      date.setTime(date.getTime() + (86400 * 30));
+      $({
+        Counter: parseFloat($('#divamountValue').text())
+      }).animate({
+        Counter: (parseFloat($('#divamountValue').text()) + v).toFixed(8)
+      }, {
+        duration: 300,
+        easing: 'swing',
+        step: function () {
+          //$('#upgradeAjax').show().html((this.Counter).toFixed(8));
+          $('#divamountValue').text((this.Counter).toFixed(8));
+          var gg = this.Counter;
+          document.cookie = 'sat=' + (this.Counter).toFixed(8) + ';expires=' + date.toGMTString();
+        }
+      });
+    }
+    setInterval(function () {
+      getBalace2(2.0E-8);
+    }, 3000);
+    setTimeout(function () {
+      window.location = '/home';
+    }, 120000);
+  });
+</script>
+<script>
+  setInterval(function () {
+    $("#buyv1").css("background-color", "#009bdd");
+    setTimeout(function () {
+      $("#buyv1").css("background-color", "#005377");
+    }, 200);
+  }, 500);
+</script>
+<script>
+  setInterval(function () {
+    $("#buyv4").css("background-color", "#009bdd");
+    setTimeout(function () {
+      $("#buyv4").css("background-color", "#005377");
+    }, 200);
+  }, 500);
+</script>
